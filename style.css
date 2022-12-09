@@ -1,7 +1,20 @@
+body{
+    background-color:rgb(48,48,48)
+}
+
+#main{
+    background-color: lightcyan;
+    border-style: groove;
+    margin: 40px;
+
+}
+
 h1{
     text-align: center;
     font-size: 50px;
-    background-color: bisque;
+    background-color: azure;
+    border-color: black;
+    border-style: groove;
 }
 
 h2{
@@ -13,9 +26,23 @@ h3{
 }
 #wordDisplay{
     text-align: center;
+    font-size: 50px;
 }
 
 #abcd{
     text-align: center;
 }
 
+#player{
+    font-size: 30px;
+    font-style: italic;
+    background-color: azure;
+    border-color: black;
+    border-style: groove;
+    color: red;
+    
+}
+
+#roundNum{
+    font-size: 30px;
+}

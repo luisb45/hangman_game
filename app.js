@@ -53,10 +53,10 @@ const makeGuess = (letterGuessed) => {
 
     if(gameWord.indexOf(letterGuessed) >= 0){
         wordToGuess();
-        GameWon();// should check if won game 
+        GameWon();// should check if won round 
     } else if(gameWord.indexOf(letterGuessed) === -1){
         updateWrongGuess();
-        checkIfGameLost();
+        checkIfGameLost(); //check if lost round
     }
 }
 
