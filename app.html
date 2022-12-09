@@ -12,18 +12,22 @@
 <body>
     <div>
         <h1>2 Player Hangman</h1>
-        <h2>Take turns to guess the hidden word.</h2>
+        <h2>Take turns to guess the hidden word. Whoever has the most points after 6 rounds wins.</h2>
+        <h3 id="player">Player 1's turn</h3>
+        <h4 id="update"></h4>
+        <h4 id="roundNum"></h4>
         <div>
             <p>Wrong guesses: <span id="wrongG">0</span> of 5</p>
         </div>
+        <div id="score">
+            <p>Player 1 points: <span id="p1Score">0</span></p>
+            <p>Player 2 points: <span id="p2Score">0</span></p>
+        </div>
         <p id="wordDisplay">Word to guess goes here</p>
         <div id="abcd"></div>
-        <form name='fullWord' action="">
-            <input type="text">
-            <input type="submit" value="submit final guess">
-        </form>
+        
         <div>
-            <button>Start new game</button>
+            <button onclick="newGame()">Reset</button>
         </div>
     </div> 
     <script src="app.js"></script>

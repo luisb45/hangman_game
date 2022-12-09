@@ -17,9 +17,10 @@ let arrWords = [
 let gameWord = '';
 const randomWord = () => {
     gameWord = arrWords[Math.floor(Math.random()* arrWords.length)]
+    console.log(gameWord)
 };
 randomWord();
-console.log(gameWord);
+
 
 
 //function that takes random word and splits it / display amount of words 
@@ -52,7 +53,7 @@ const makeGuess = (letterGuessed) => {
 
     if(gameWord.indexOf(letterGuessed) >= 0){
         wordToGuess();
-        // should check if won game
+        GameWon();// should check if won game 
     } else if(gameWord.indexOf(letterGuessed) === -1){
         updateWrongGuess();
         checkIfGameLost();
@@ -67,29 +68,108 @@ document.getElementById('wrongG').innerHTML = wrongGuess
 }
 
 
-//if wrong guess exceeds max wrong guess / lost game
+//if wrong guess exceeds max wrong guess / lost round
 const checkIfGameLost = () => {
     if(wrongGuess >= 5){
-        //update score
+        document.getElementById('update').innerHTML = `You ran out of guesses. The word was ${gameWord}. Points +0`
         nextRound() // proceeds with next round
     } 
 }
 
 
-//if correctly guesses word / win
-const ifGameWon = () => {
-
+//if correctly guesses word / round win
+const GameWon = () => {
+    if(wordSplit === gameWord) {
+        document.getElementById('update').innerHTML = 'You guessed the word! Points +1'
+        updateScore();//update score
+        nextRound();//next round
+    }
 }
 
 
 //update score for players
+let player = 1; 
+let p1Score = 0;
+let p2Score = 0;
 const updateScore = () => {
-
+    if(player === 1){
+        p1Score++
+        document.getElementById('p1Score').innerHTML = p1Score
+    }else if(player === 2){
+        p2Score++
+        document.getElementById('p2Score').innerHTML = p2Score
+    }
 }
 
 //function to starts next round for second player 
-const nextRound = () => {
+let roundNum = 1;
+document.getElementById('roundNum').innerHTML = `Round ${roundNum}`
 
+const nextRound = () => {
+    roundNum++
+    guessed = [];
+
+    wrongGuess = 0;
+    document.getElementById('wrongG').innerHTML = wrongGuess
+
+    
+    randomWord();
+    wordToGuess();
+    generateButtons();
+    
+    document.getElementById('roundNum').innerHTML = `Round ${roundNum}`
+
+    if(player === 1){
+        player = 2
+        document.getElementById('player').innerHTML = "Player 2's turn"
+    } else if(player === 2){
+        player = 1
+        document.getElementById('player').innerHTML = "Player 1's turn"
+    }
+
+    gameEnd(); //ends game after 6 rounds
 }
 
-//reset game
+
+//Won game conditions / draw
+const gameEnd = () => {
+    if (roundNum > 6){
+        if(p1Score > p2Score){
+            alert('Player 1 has Won!')//player 1 wins
+            newGame()
+        } else if(p2Score > p1Score){
+            alert('Player 2 has Won!')//player 2 wins 
+            newGame()
+        }else {
+            alert('The game is a draw!')//draw 
+            newGame()
+     }
+    }
+}
+
+
+
+
+//start new game
+const newGame = () => {
+    roundNum = 1;
+    document.getElementById('roundNum').innerHTML = `Round ${roundNum}`
+
+    player = 1;
+    guessed = [];
+
+    wrongGuess = 0;
+    document.getElementById('wrongG').innerHTML = wrongGuess
+
+    p1Score = 0;
+    p2Score = 0;
+    document.getElementById('p1Score').innerHTML = p1Score
+    document.getElementById('p2Score').innerHTML = p2Score
+
+    randomWord();
+    wordToGuess();
+    generateButtons();
+
+    document.getElementById('player').innerHTML = "Player 1's turn"
+    document.getElementById('update').innerHTML = "New Game Start"
+}
