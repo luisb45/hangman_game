@@ -8,6 +8,7 @@ Build with Javascript, HTML, and CSS
 
 https://luisb45.github.io/hangman_game/
 
-![hangman](https://user-images.githubusercontent.com/110195671/206959496-8f11232b-ba39-49d6-ba98-334b8b3b2506.JPG)
+![hangman1](https://user-images.githubusercontent.com/110195671/206961729-53945f2e-a022-4417-9719-14754e6aea53.JPG)
+
 
 
